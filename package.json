@@ -38,9 +38,6 @@
 	"lint-staged": {
 		"*.{ts,tsx,css,scss}": [
 			"prettier --write"
-		],
-		"*.{ts,tsx}": [
-			"next lint"
 		]
 	}
 }
