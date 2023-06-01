@@ -10,7 +10,8 @@
 		"test": "jest --watch",
 		"coverage": "jest --coverage --watchAll",
 		"format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\"",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"actions:test": "jest --forceExit --detectOpenHandles"
 	},
 	"dependencies": {
 		"@types/node": "20.2.5",
