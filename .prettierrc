@@ -4,7 +4,6 @@
 	"embeddedLanguageFormatting": "auto",
 	"htmlWhitespaceSensitivity": "css",
 	"insertPragma": false,
-	"jsxBracketSameLine": false,
 	"bracketSameLine": false,
 	"jsxSingleQuote": false,
 	"printWidth": 80,
@@ -16,6 +15,5 @@
 	"trailingComma": "es5",
 	"useTabs": true,
 	"vueIndentScriptAndStyle": false,
-	"tabWidth": 4,
-	"editor.formatOnSave": true
+	"tabWidth": 4
 }
