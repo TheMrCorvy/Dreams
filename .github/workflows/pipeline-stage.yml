@@ -60,4 +60,4 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Test
-              run: npm run coverage
+              run: jest --forceExit --detectOpenHandles
