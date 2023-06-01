@@ -1,14 +1,14 @@
-import React from 'react'
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import Home from '../app/page';
+import React from "react"
+import "@testing-library/jest-dom"
+import { render, screen } from "@testing-library/react"
+import Home from "../app/page"
 
-describe('Home', () => {
-	it('renders a heading', () => {
-		render(<Home />);
+describe("Home", () => {
+	it("renders a heading", () => {
+		render(<Home />)
 
-		const heading = screen.getByTestId('test');
+		const heading = screen.getByTestId("test")
 
-		expect(heading).toBeInTheDocument();
-	});
-});
+		expect(heading).toBeInTheDocument()
+	})
+})
