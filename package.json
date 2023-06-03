@@ -41,7 +41,7 @@
 			"prettier --write"
 		],
 		"*.{ts,tsx}": [
-			"next lint"
+			"eslint --fix"
 		]
 	}
 }
