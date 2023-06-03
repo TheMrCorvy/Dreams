@@ -7,21 +7,24 @@ import Canvas from "../Canvas"
 import useWindowSize from "../../hooks/useWindowSize"
 
 const Armony = () => {
-	const windowSize = useWindowSize()
-	const ref = useRef<HTMLDivElement>(null)
+	const [width, height] = useWindowSize()
+
+	const parentRef = useRef<HTMLDivElement>(null)
+	const canvasRef = useRef<HTMLCanvasElement>(null)
+
 	const [canvasSize, setCanvasSize] = useState({
 		height: 0,
 		width: 0,
 	})
 
 	useEffect(() => {
-		if (ref.current) {
+		if (parentRef.current) {
 			setCanvasSize({
-				width: ref.current.clientWidth,
-				height: ref.current.clientHeight,
+				width: parentRef.current.clientWidth,
+				height: parentRef.current.clientHeight,
 			})
 		}
-	}, [windowSize])
+	}, [width, height])
 
 	return (
 		<section
@@ -30,9 +33,9 @@ const Armony = () => {
 		>
 			<div
 				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-80 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800"
-				ref={ref}
+				ref={parentRef}
 			>
-				<Canvas {...canvasSize} />
+				<Canvas {...canvasSize} ref={canvasRef} />
 			</div>
 		</section>
 	)
