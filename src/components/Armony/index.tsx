@@ -10,7 +10,6 @@ const Armony = () => {
 	const [width, height] = useWindowSize()
 
 	const parentRef = useRef<HTMLDivElement>(null)
-	const canvasRef = useRef<HTMLCanvasElement>(null)
 
 	const [canvasSize, setCanvasSize] = useState({
 		height: 0,
@@ -19,9 +18,15 @@ const Armony = () => {
 
 	useEffect(() => {
 		if (parentRef.current) {
+			const clientW = parentRef.current.clientWidth
+			const clientH = parentRef.current.clientHeight
+
+			const size = clientW <= clientH ? clientW : clientH
+			// I want this canvas to be a  square
+
 			setCanvasSize({
-				width: parentRef.current.clientWidth,
-				height: parentRef.current.clientHeight,
+				width: size,
+				height: size,
 			})
 		}
 	}, [width, height])
@@ -32,10 +37,10 @@ const Armony = () => {
 			id="armony-of-the-stars"
 		>
 			<div
-				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-80 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800"
+				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-72 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800 flex justify-center items-center bg-transparent"
 				ref={parentRef}
 			>
-				<Canvas {...canvasSize} ref={canvasRef} />
+				<Canvas {...canvasSize} />
 			</div>
 		</section>
 	)

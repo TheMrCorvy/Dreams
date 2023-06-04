@@ -1,36 +1,46 @@
 "use clinet"
 
-import React, { useRef, useEffect, useState, LegacyRef } from "react"
+import React, { useRef, useEffect } from "react"
 
 interface Props {
 	width: number
 	height: number
-	ref: LegacyRef<HTMLCanvasElement> | undefined
 }
 
-const Canvas = ({ height, width, ref }: Props) => {
-	// const [soundEnabled, setSoundEnabled] = useState(false) // User still must interact with screen first
-	// const [pulseEnabled, setPulseEnabled] = useState(false) // Pulse will only show if sound is enabled as well
+const Canvas = ({ height, width }: Props) => {
+	const paper = useRef<HTMLCanvasElement>(null)
 
-	// const rings = Array(21).fill("#A6C48A")
+	const draw = () => {
+		const pen = paper.current?.getContext("2d")
 
-	// const settings = {
-	// 	startTime: new Date().getTime(), // This can be in the future
-	// 	duration: 900, // Total time for all dots to realign at the starting point
-	// 	maxCycles: Math.max(rings.length, 100), // Must be above colors.length or else...
-	// 	instrument: "vibraphone", // "default" | "wave" | "vibraphone"
-	// }
+		if (!pen || paper.current === null) return
 
-	// useEffect(() => {
-	// 	if (canvasRef.current) {
-	// 		const canvas: HTMLCanvasElement = canvasRef.current
-	// 		const context = canvas.getContext("2d")
+		const start = {
+			x: paper.current.width * 0.1,
+			y: paper.current.height * 0.5,
+		}
 
-	// 		//draw
-	// 	}
-	// }, [canvasRef])
+		const end = {
+			x: paper.current.width * 0.9,
+			y: paper.current.height * 0.5,
+		}
 
-	return <canvas ref={ref} height={height} width={width} />
+		pen.strokeStyle = "white"
+		pen.lineWidth = 2
+
+		pen.beginPath()
+		pen.moveTo(start.x, start.y)
+		pen.lineTo(end.x, end.y)
+		pen.stroke()
+	}
+
+	useEffect(() => {
+		if (paper.current) {
+			draw()
+		}
+	}, [height, width])
+
+	return <canvas ref={paper} height={height} width={width} />
 }
 
 export default Canvas
