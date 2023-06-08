@@ -4,24 +4,32 @@ import React, { useEffect, FC, useState, useCallback } from "react"
 
 interface Props {
 	ringRadius: number
+	index: number
 }
 
 const startTime = new Date().getTime()
 
-const Ring: FC<Props> = ({ ringRadius }) => {
+const Ring: FC<Props> = ({ ringRadius, index }) => {
 	const [currentAngle, setCurrentAngle] = useState(Math.PI)
 
 	const calcAngle = useCallback(() => {
 		const currentTime = new Date().getTime()
 		const elapsedTime = (currentTime - startTime) / 1000
-		const velocity = 0.5
+		const oneFullLoop = 2 * Math.PI
+		const amountOfLoops = 50 - index
+		const timeToSyncAgain = 900 // 15 minutes
+		const velocity = (oneFullLoop * amountOfLoops) / timeToSyncAgain
 
-		setCurrentAngle(Math.PI + elapsedTime * velocity)
+		// I calculated the module of the angle is just to prevent that
+		// it doesn't grow infinetly without aany need.
+		const modOfAngle = (Math.PI + elapsedTime * velocity) % oneFullLoop
 
-		// This will cal the function calcAngle every time the
-		// monitor refreshes, thus updating the state and re-rendering the component.
+		setCurrentAngle(modOfAngle)
+
+		// This will cal the function calcAngle every time the monitor
+		// refreshes, thus updating the state and re-rendering the component.
 		requestAnimationFrame(calcAngle)
-	}, [])
+	}, [index])
 
 	useEffect(() => {
 		calcAngle()

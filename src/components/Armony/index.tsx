@@ -48,6 +48,7 @@ const Armony: FC = () => {
 						<Ring
 							key={"armony-of-stars_ring-number:" + i}
 							ringRadius={canvasSize * 0.005 + i * 2.33}
+							index={i}
 						/>
 					))}
 				</div>
