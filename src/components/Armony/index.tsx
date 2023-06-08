@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, FC } from "react"
 
 import useWindowSize from "../../hooks/useWindowSize"
 import Ring from "./Ring"
 
-const Armony = () => {
+const Armony: FC = () => {
 	const [width, height] = useWindowSize()
 	const parentRef = useRef<HTMLDivElement>(null)
 	const [canvasSize, setCanvasSize] = useState(0)
@@ -16,7 +16,7 @@ const Armony = () => {
 			const clientH = parentRef.current.clientHeight
 
 			const size = clientW <= clientH ? clientW : clientH
-			// I want this canvas to be a  square
+			// I want this canvas to be a perfect square
 
 			setCanvasSize(size)
 		}
@@ -44,10 +44,10 @@ const Armony = () => {
 						style={{ top: "calc(50% - (0.125rem / 2))" }}
 					/>
 
-					{[...Array(1)].map((_, i: number) => (
+					{[...Array(21)].map((_, i: number) => (
 						<Ring
 							key={"armony-of-stars_ring-number:" + i}
-							ringRadius={10}
+							ringRadius={canvasSize * 0.005 + i * 2.33}
 						/>
 					))}
 				</div>

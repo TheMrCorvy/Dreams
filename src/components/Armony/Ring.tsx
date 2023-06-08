@@ -6,8 +6,9 @@ interface Props {
 	ringRadius: number
 }
 
+const startTime = new Date().getTime()
+
 const Ring: FC<Props> = ({ ringRadius }) => {
-	const [startTime, setStartTime] = useState<number>(0)
 	const [currentAngle, setCurrentAngle] = useState(Math.PI)
 
 	const calcAngle = useCallback(() => {
@@ -17,14 +18,14 @@ const Ring: FC<Props> = ({ ringRadius }) => {
 
 		setCurrentAngle(Math.PI + elapsedTime * velocity)
 
+		// This will cal the function calcAngle every time the
+		// monitor refreshes, thus updating the state and re-rendering the component.
 		requestAnimationFrame(calcAngle)
-	}, [startTime])
+	}, [])
 
 	useEffect(() => {
-		setStartTime(new Date().getTime())
-
 		calcAngle()
-	}, [ringRadius, calcAngle])
+	}, [calcAngle])
 
 	return (
 		<svg
