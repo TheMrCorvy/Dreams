@@ -1,52 +1,30 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, FC, useState, useCallback } from "react"
 
-const Ring: React.FC = () => {
-	const ringsContainerRef = useRef<SVGGElement | null>(null)
-	const dotsContainerRef = useRef<SVGGElement | null>(null)
+interface Props {
+	ringRadius: number
+}
+
+const Ring: FC<Props> = ({ ringRadius }) => {
+	const [startTime, setStartTime] = useState<number>(0)
+	const [currentAngle, setCurrentAngle] = useState(Math.PI)
+
+	const calcAngle = useCallback(() => {
+		const currentTime = new Date().getTime()
+		const elapsedTime = (currentTime - startTime) / 1000
+		const velocity = 0.5
+
+		setCurrentAngle(Math.PI + elapsedTime * velocity)
+
+		requestAnimationFrame(calcAngle)
+	}, [startTime])
 
 	useEffect(() => {
-		const numRings = 21 // Number of rings
-		const ringRadius = 1 // Initial ring radius
-		const ringDistance = 3 // Distance between rings
-		const dotRadius = 0.85 // Dot radius
+		setStartTime(new Date().getTime())
 
-		for (let i = 0; i < numRings; i++) {
-			const currentRadius = ringRadius + i * 0.8 * ringDistance
-			const dotAngle = Math.PI
-
-			// Create the ring
-			const ring = document.createElementNS(
-				"http://www.w3.org/2000/svg",
-				"circle"
-			)
-			ring.setAttribute("class", "ring")
-			ring.setAttribute("cx", "50")
-			ring.setAttribute("cy", "50")
-			ring.setAttribute("style", "stroke-width: 0.25;")
-			ring.setAttribute("r", String(currentRadius))
-			ringsContainerRef.current?.appendChild(ring)
-
-			// Create the dot
-			const dot = document.createElementNS(
-				"http://www.w3.org/2000/svg",
-				"circle"
-			)
-			dot.setAttribute("class", "dot")
-			dot.setAttribute(
-				"cx",
-				String(50 + currentRadius * Math.cos(dotAngle))
-			)
-			dot.setAttribute("style", "stroke-width: 0.25;")
-			dot.setAttribute(
-				"cy",
-				String(50 + currentRadius * Math.sin(dotAngle))
-			)
-			dot.setAttribute("r", String(dotRadius))
-			dotsContainerRef.current?.appendChild(dot)
-		}
-	}, [])
+		calcAngle()
+	}, [ringRadius, calcAngle])
 
 	return (
 		<svg
@@ -54,22 +32,28 @@ const Ring: React.FC = () => {
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 			viewBox="0 0 100 100"
 			preserveAspectRatio="xMidYMid meet"
+			className="absolute top-0"
 		>
-			<style>
-				{`
-          .ring {
-            fill: none;
-            stroke: #ffffff;
-            stroke-width: 2;
-          }
-
-          .dot {
-            fill: #ffffff;
-          }
-        `}
-			</style>
-			<g ref={ringsContainerRef}></g>
-			<g ref={dotsContainerRef}></g>
+			<g>
+				<circle
+					className="ring"
+					fill="none"
+					stroke="white"
+					strokeWidth={0.25}
+					cx="50"
+					cy="50"
+					r={ringRadius}
+				></circle>
+			</g>
+			<g>
+				<circle
+					className="dot"
+					fill="white"
+					r="0.85"
+					cx={50 + ringRadius * Math.cos(currentAngle)}
+					cy={50 + ringRadius * Math.sin(currentAngle)}
+				></circle>
+			</g>
 		</svg>
 	)
 }

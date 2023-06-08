@@ -7,9 +7,7 @@ import Ring from "./Ring"
 
 const Armony = () => {
 	const [width, height] = useWindowSize()
-
 	const parentRef = useRef<HTMLDivElement>(null)
-
 	const [canvasSize, setCanvasSize] = useState(0)
 
 	useEffect(() => {
@@ -33,7 +31,6 @@ const Armony = () => {
 				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-72 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800 flex justify-center items-center bg-transparent"
 				ref={parentRef}
 			>
-				{/* <Canvas {...canvasSize} /> */}
 				<div
 					id="canvas"
 					className="relative bg-blue-500"
@@ -47,7 +44,12 @@ const Armony = () => {
 						style={{ top: "calc(50% - (0.125rem / 2))" }}
 					/>
 
-					<Ring />
+					{[...Array(1)].map((_, i: number) => (
+						<Ring
+							key={"armony-of-stars_ring-number:" + i}
+							ringRadius={10}
+						/>
+					))}
 				</div>
 			</div>
 		</section>
