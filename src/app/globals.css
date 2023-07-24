@@ -25,3 +25,40 @@ body {
 		)
 		rgb(var(--background-start-rgb));
 }
+
+span {
+	display: block;
+	height: 20em;
+	left: calc(50% - 10em);
+	position: absolute;
+	top: calc(50% - 10em);
+	width: 20em;
+}
+
+.large-circles {
+	animation: spin 10s linear infinite;
+	border: 2px solid white;
+	border-radius: 50%;
+	position: relative;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotateZ(0);
+	}
+	100% {
+		transform: rotateZ(360deg);
+	}
+}
+
+.circle {
+	border-radius: 50%;
+	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.5);
+	top: calc(50% - 0.25em);
+	left: -0.3em;
+	position: absolute;
+	transform-origin: 50% 12.5em;
+	background-color: white;
+	height: 0.5em;
+	width: 0.5em;
+}

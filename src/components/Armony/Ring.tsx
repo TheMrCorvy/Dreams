@@ -35,6 +35,10 @@ const Ring: FC<Props> = ({ ringRadius, index }) => {
 		calcAngle()
 	}, [calcAngle])
 
+	useEffect(() => {
+		if (currentAngle == Math.PI) console.log("hola")
+	}, [currentAngle])
+
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
