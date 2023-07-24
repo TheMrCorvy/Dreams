@@ -3,8 +3,7 @@
 import React, { useRef, useEffect, useState, FC } from "react"
 
 import useWindowSize from "../../hooks/useWindowSize"
-import Ring from "./Ring"
-import Other from "../Other"
+import Ring from "../Ring"
 
 const Armony: FC = () => {
 	const [width, height] = useWindowSize()
@@ -45,14 +44,13 @@ const Armony: FC = () => {
 						style={{ top: "calc(50% - (0.125rem / 2))" }}
 					/>
 
-					{/* {[...Array(1)].map((_, i: number) => (
+					{[...Array(21)].map((_, i: number) => (
 						<Ring
 							key={"armony-of-stars_ring-number:" + i}
-							ringRadius={canvasSize * 0.005 + i * 2.33}
-							index={i}
+							diameter={4.6 * i + 6}
+							time={900 / (50 - i)}
 						/>
-					))} */}
-					<Other />
+					))}
 				</div>
 			</div>
 		</section>

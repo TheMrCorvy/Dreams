@@ -1,0 +1,18 @@
+.ring {
+	display: block;
+	border: 2px solid white;
+	border-radius: 50%;
+	position: absolute;
+}
+
+.circle {
+	border-radius: 50%;
+	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.5);
+	top: calc(50% - 0.25em);
+	left: -0.3em;
+	position: absolute;
+	transform-origin: 50% 12.5em;
+	background-color: white;
+	height: 0.5em;
+	width: 0.5em;
+}
