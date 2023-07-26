@@ -26,6 +26,7 @@ const Armony: FC = () => {
 		<section
 			className="flex px-4 sm:px-7 justify-center"
 			id="armony-of-the-stars"
+			data-testid="armony-of-the-stars"
 		>
 			<div
 				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-72 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800 flex justify-center items-center bg-transparent overflow-hidden"

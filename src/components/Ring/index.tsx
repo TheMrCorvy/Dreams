@@ -46,6 +46,7 @@ const Ring: FC<Props> = ({ diameter, time, index }) => {
 				left: `calc(50% - ${diameter / 2}%)`,
 				animation: animate ? `spin ${time}s linear infinite` : "",
 			}}
+			data-testid={"ring-" + index}
 		>
 			<div className={styles.circle}></div>
 		</span>
