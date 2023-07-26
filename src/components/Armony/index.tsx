@@ -28,7 +28,7 @@ const Armony: FC = () => {
 			id="armony-of-the-stars"
 		>
 			<div
-				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-72 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800 flex justify-center items-center bg-transparent"
+				className="border-solid border-t-0 border-2 border-sky-500 rounded-b-xl container h-72 sm:h-96 lg:h-[30rem] xl:h-[33rem] w-96 sm:w-2/3 md:w-3/5 lg:w-4/6 shadow-2xl shadow-sky-800 flex justify-center items-center bg-transparent overflow-hidden"
 				ref={parentRef}
 			>
 				<div
