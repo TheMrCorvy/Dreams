@@ -49,6 +49,7 @@ const Armony: FC = () => {
 							key={"armony-of-stars_ring-number:" + i}
 							diameter={4.6 * i + 6}
 							time={900 / (50 - i)}
+							index={i}
 						/>
 					))}
 				</div>
