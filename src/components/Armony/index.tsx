@@ -34,7 +34,7 @@ const Armony: FC = () => {
 			>
 				<div
 					id="canvas"
-					className="relative bg-blue-500"
+					className="relative"
 					style={{
 						width: canvasSize,
 						height: canvasSize,

@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react"
 
+import useSound from "use-sound"
 import styles from "./Ring.module.css"
 
 interface Props {
@@ -11,10 +12,14 @@ interface Props {
 const Ring: FC<Props> = ({ diameter, time, index }) => {
 	const [animate, setAnimate] = useState(false)
 
+	const [starSound] = useSound(`/sounds/armony-of-stars/${index}.wav`, {
+		volume: 0.25,
+	})
+
 	useEffect(() => {
 		if (animate) {
 			const interval = setInterval(() => {
-				console.log("Play sound for ring number: " + index)
+				starSound()
 			}, (time * 1000) / 2)
 			/**
 			 * Convert time to milliseconds, and divide it by 2,
@@ -28,7 +33,7 @@ const Ring: FC<Props> = ({ diameter, time, index }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setAnimate(true)
-		}, 5000)
+		}, 10000)
 		/**
 		 * Wait until the component is fully rendered so that the
 		 * timeout and the animation don't desynchronize with each
