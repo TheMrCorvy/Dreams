@@ -9,6 +9,7 @@ const Armony: FC = () => {
 	const [width, height] = useWindowSize()
 	const parentRef = useRef<HTMLDivElement>(null)
 	const [canvasSize, setCanvasSize] = useState(0)
+	const amountOfRings = [...Array(21)]
 
 	useEffect(() => {
 		if (parentRef.current) {
@@ -21,6 +22,9 @@ const Armony: FC = () => {
 			setCanvasSize(size)
 		}
 	}, [width, height])
+
+	const diameter = (i: number) => 4.6 * i + 6
+	const time = (i: number) => 900 / (50 - i)
 
 	return (
 		<section
@@ -45,11 +49,11 @@ const Armony: FC = () => {
 						style={{ top: "calc(50% - (0.125rem / 2))" }}
 					/>
 
-					{[...Array(21)].map((_, i: number) => (
+					{amountOfRings.map((_, i: number) => (
 						<Ring
 							key={"armony-of-stars_ring-number:" + i}
-							diameter={4.6 * i + 6}
-							time={900 / (50 - i)}
+							diameter={diameter(i)}
+							time={time(i)}
 							index={i}
 						/>
 					))}
